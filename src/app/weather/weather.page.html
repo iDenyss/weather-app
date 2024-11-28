@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Clima Hoy</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="container">
+    <h2>Consultar Clima</h2>
+    <div class="input-group mb-3">
+      <ion-input
+        placeholder="Ingresa una ciudad"
+        [(ngModel)]="city"
+        class="form-control"
+      ></ion-input>
+      <ion-button (click)="getWeather()" expand="block" color="primary">
+        Consultar
+      </ion-button>
+    </div>
+
+    <ion-spinner *ngIf="loading"></ion-spinner>
+
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+
+    <div *ngIf="weatherData" class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ weatherData.name }}</h5>
+        <p class="card-text">
+          Temperatura: {{ weatherData.main.temp }}°C <br />
+          Condición: {{ weatherData.weather[0].description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</ion-content>
